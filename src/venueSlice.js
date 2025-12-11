@@ -2,41 +2,61 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const venueSlice = createSlice({
-  name: "venue",
+  name: "funkopops",  
   initialState: [
     {
-      img: "https://pixabay.com/images/download/chairs-2181916_640.jpg",
-      name: "Conference Room (Capacity:15)",
-      cost: 3500,
+      img: "/src/assets/images/funko1.jpg",  // IMAGEN 1
+      name: "Funko Pop Thanos",
+      cost: 50000,
       quantity: 0,
     },
     {
-      img: "https://pixabay.com/images/download/event-venue-1597531_640.jpg",
-      name: "Auditorium Hall (Capacity:200)",
-      cost: 5500,
+      img: "/src/assets/images/funko2.jpg",  // IMAGEN 2
+      name: "Amazona DC",
+      cost: 45000,
       quantity: 0,
     },
     {
-      img: "https://pixabay.com/images/download/convention-center-3908238_640.jpg",
-      name: "Presentation Room (Capacity:50)",
-      cost: 700,
+      img: "/src/assets/images/funko3.jpg",  // IMAGEN 3
+      name: "Aang Avatar",
+      cost: 40000,
+      quantity: 0,
+    },
+   {
+      img: "/src/assets/images/funko4.jpg",
+      name: "Buu - Monsters INC",
+      cost: 15000,
       quantity: 0,
     },
     {
-      img: "https://pixabay.com/images/download/chairs-2181916_640.jpg",
-      name: "Large Meeting Room (Capacity:10)",
-      cost: 900,
-      quantity: 0,
-    },
-    {
-      img: "https://pixabay.com/images/download/laptops-593296_640.jpg",
-      name: "Small Meeting Room (Capacity:5)",
-      cost: 1100,
+      img: "/src/assets/images/funko5.jpg",
+      name: "Pokemon Cubone",
+      cost: 35000,
       quantity: 0,
     },
   
   ],
-  reducers: {
+
+    reducers: {
+    incrementQuantity: (state, action) => {
+      const { payload: index } = action;
+      if (state[index]) {
+        state[index].quantity++;
+      }
+    },
+    decrementQuantity: (state, action) => {
+      const { payload: index } = action;
+      if (state[index] && state[index].quantity > 0) {
+        state[index].quantity--;
+      }
+    },
+  },
+});
+
+export const { incrementQuantity, decrementQuantity } = venueSlice.actions;
+export default venueSlice.reducer;
+
+  /*reducers: {
    
     incrementQuantity: (state, action) => {
       const { payload: index } = action;
@@ -57,4 +77,4 @@ export const venueSlice = createSlice({
 
 export const { incrementQuantity, decrementQuantity } = venueSlice.actions;
 
-export default venueSlice.reducer;
+export default venueSlice.reducer;*/
