@@ -1,4 +1,4 @@
-// store.js
+// store.js Funko Pops
 import { configureStore } from '@reduxjs/toolkit';
 import venueReducer from './venueSlice';
 

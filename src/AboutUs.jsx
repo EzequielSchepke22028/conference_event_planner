@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 
 const AboutUs = () => {
     return (
@@ -10,9 +10,25 @@ const AboutUs = () => {
             <p>At BudgetEase Solutions, our mission is to make budgeting effortless and accessible for everyone. Whether you're a small business owner, a busy professional, or an individual looking to manage your personal finances, we offer tailored solutions to streamline your budgeting process.
             </p>
             {/* <p>                Our team of experts is dedicated to providing exceptional service and support, guiding you every step of the way to financial success. With BudgetEase Solutions, you can trust us to simplify your finances and pave the way for a brighter financial future.
-            </p> */}
+            </p> *//*}
         </div>
     )
 }
 
-export default AboutUs
+export default AboutUs*/
+
+//import React from 'react';
+
+const AboutUs = () => {
+    return (
+        <div className="aboutus_container">
+            <p>
+                Welcome to <strong>Funko Pop E-commerce</strong>, ¡Tu socio de confianza para los mejores coleccionables!
+Ofrecemos Funko Pops premium con envío rápido y precios increíbles.
+            </p>
+            <p>¡Nuestra colección incluye Personajes de tus peliculas series y personajes favoritos! Si queres alguno que no conseguis consultanos</p>
+        </div>
+    )
+}
+
+export default AboutUs;

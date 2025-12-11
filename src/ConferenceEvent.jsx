@@ -1,4 +1,120 @@
-import React, { useState } from "react";
+import { useState } from "react";//import React, { useState } from "react";
+import "./ConferenceEvent.css";
+import TotalCost from "./TotalCost";
+import { useSelector, useDispatch } from "react-redux";
+import { incrementQuantity, decrementQuantity } from "./venueSlice";
+
+const ConferenceEvent = () => {
+    const [showItems, setShowItems] = useState(false);
+    const venueItems = useSelector((state) => state.venue);
+    const dispatch = useDispatch();
+
+    // FIX: Removido remainingAuditoriumQuantity que causaba crash
+
+    const handleToggleItems = () => {
+        setShowItems(!showItems);
+    };
+
+    const handleAddToCart = (index) => {
+        dispatch(incrementQuantity(index));
+    };
+
+    const handleRemoveFromCart = (index) => {
+        if (venueItems[index]?.quantity > 0) {
+            dispatch(decrementQuantity(index));
+        }
+    };
+
+    const calculateTotalCost = () => {
+        return venueItems.reduce((total, item) => total + (item.cost * item.quantity), 0);
+    };
+
+    const venueTotalCost = calculateTotalCost();
+
+
+    const navigateToProducts = () => {
+    if (showItems) {
+        setShowItems(false);
+    }
+};
+
+/*    const navigateToProducts = (_idType) => {
+        if (showItems) {
+            setShowItems(false);
+        }
+    };*/
+
+    return (
+        <>
+            <nav className="navbar_event_conference">
+                <div className="company_logo">Funko Pop E-commerce</div>
+                <div className="left_navbar">
+                    <div className="nav_links">
+                        <a href="#venue" onClick={() => navigateToProducts("#venue")}>Funko Pops</a>
+                        <a href="#addons" onClick={() => navigateToProducts('#addons')}>Add-ons</a>
+                        <a href="#meals" onClick={() => navigateToProducts('#meals')}>Accesorios</a>
+                    </div>
+                    <button className="details_button" onClick={handleToggleItems}>
+                        Show Details
+                    </button>
+                </div>
+            </nav>
+            <div className="main_container">
+                {!showItems ? (
+                    <div className="items-information">
+                        <div id="venue" className="venue_container container_main">
+                            <div className="text">
+                                <h1>Funko Pop Selection</h1>
+                            </div>
+                            <div className="venue_selection">
+                                {venueItems.map((item, index) => (
+                                    <div className="venue_main" key={index}>
+                                        <div className="img">
+                                            <img src={item.img} alt={item.name} />
+                                        </div>
+                                        <div className="text">{item.name}</div>
+                                        <div>${item.cost}</div>
+                                        <div className="button_container">
+                                            <button
+                                                className={venueItems[index]?.quantity === 0 ? "btn-warning btn-disabled" : "btn-warning btn-minus"}
+                                                onClick={() => handleRemoveFromCart(index)}
+                                            >
+                                                –
+                                            </button>
+                                            <span className="selected_count">
+                                                {venueItems[index]?.quantity || 0}
+                                            </span>
+                                            <button
+                                                className="btn-success btn-plus"
+                                                onClick={() => handleAddToCart(index)}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="total_cost">Total Cost: ${venueTotalCost}</div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="total_amount_detail">
+                        <TotalCost totalCosts={{venue: venueTotalCost}} handleClick={handleToggleItems} />
+                    </div>
+                )}
+            </div>
+        </>
+    );
+};
+
+export default ConferenceEvent;
+
+
+
+
+
+
+/*import React, { useState } from "react";
 import "./ConferenceEvent.css";
 import TotalCost from "./TotalCost";
 import { useSelector, useDispatch } from "react-redux";
@@ -147,7 +263,7 @@ const ConferenceEvent = () => {
         <div className="total_cost">Total Cost: ${venueTotalCost}</div>
       </div>
 
-                            {/*Necessary Add-ons*/}
+                            {/*Necessary Add-ons*//*}
                             <div id="addons" className="venue_container container_main">
 
 
@@ -163,7 +279,7 @@ const ConferenceEvent = () => {
 
                             </div>
 
-                            {/* Meal Section */}
+                            {/* Meal Section *//*}
 
                             <div id="meals" className="venue_container container_main">
 
@@ -199,4 +315,4 @@ const ConferenceEvent = () => {
     );
 };
 
-export default ConferenceEvent;
+export default ConferenceEvent;*/
